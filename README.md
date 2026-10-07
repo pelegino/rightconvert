@@ -17,7 +17,7 @@ RightConvert adds a **Convert** submenu to Finder that turns images, video, audi
 Requirements: macOS 13 or later, [Homebrew](https://brew.sh), and Xcode or the Command Line Tools (`xcode-select --install`).
 
 ```sh
-git clone https://github.com/<you>/rightconvert.git
+git clone https://github.com/peleg1711-boop/rightconvert.git
 cd rightconvert
 ./install.sh
 ```
