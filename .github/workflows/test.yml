@@ -1,0 +1,27 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install engines
+        run: brew install ffmpeg imagemagick libheif poppler pandoc
+
+      - name: Syntax check
+        run: for f in bin/rightconvert install.sh uninstall.sh app/build.sh tests/*.sh; do zsh -n "$f"; done
+
+      - name: Build app and Finder extension
+        run: SIGN_IDENTITY=- app/build.sh
+
+      - name: Conversion tests
+        run: tests/run.sh
+
+      - name: Quality tests
+        run: tests/quality.sh
