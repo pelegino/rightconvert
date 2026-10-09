@@ -2,26 +2,60 @@ name: test
 
 on:
   push:
-    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  test:
+  macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install engines
+      - name: Install tools
         run: brew install ffmpeg imagemagick libheif poppler pandoc
 
       - name: Syntax check
-        run: for f in bin/rightconvert install.sh uninstall.sh app/build.sh tests/*.sh; do zsh -n "$f"; done
+        run: for f in install.sh uninstall.sh app/build.sh; do zsh -n "$f"; done
 
       - name: Build app and Finder extension
         run: SIGN_IDENTITY=- app/build.sh
 
-      - name: Conversion tests
-        run: tests/run.sh
+      # The app runs the converter with the system Python (3.9), so test with that one.
+      - name: Tests
+        run: cd tests && /usr/bin/python3 -m unittest -v
 
-      - name: Quality tests
-        run: tests/quality.sh
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          choco install ffmpeg imagemagick pandoc --no-progress -y
+          $zip = "$env:RUNNER_TEMP\poppler.zip"
+          $url = gh api repos/oschwartz10612/poppler-windows/releases/latest --jq '.assets[0].browser_download_url'
+          Invoke-WebRequest $url -OutFile $zip
+          Expand-Archive $zip "$env:RUNNER_TEMP\poppler"
+          (Get-ChildItem "$env:RUNNER_TEMP\poppler\*\Library\bin").FullName | Out-File -Append $env:GITHUB_PATH
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Tests
+        run: |
+          cd tests
+          python -m unittest -v
+
+      - name: Installer and Explorer menu
+        run: |
+          powershell -NoProfile -ExecutionPolicy Bypass -File windows\install.ps1 -SkipDeps
+          if ($LASTEXITCODE) { exit 1 }
+          $key = 'HKCU:\Software\Classes\SystemFileAssociations\.png\shell\RightConvert'
+          (Get-ItemProperty $key).MUIVerb
+          Get-ChildItem "$key\shell" | ForEach-Object { "{0} -> {1}" -f $_.PSChildName, (Get-ItemProperty "$($_.PSPath)\command").'(default)' }
+          & "$env:LOCALAPPDATA\RightConvert\bin\rightconvert.cmd" --list x.png
+          powershell -NoProfile -ExecutionPolicy Bypass -File windows\uninstall.ps1
+          if (Test-Path $key) { throw 'menu still registered after uninstall' }

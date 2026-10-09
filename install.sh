@@ -76,7 +76,7 @@ pluginkit -e use -i "$EXT_ID"
 print "Installed $APP_DST and enabled its Finder extension."
 
 mkdir -p "${MATRIX:h}"
-"$APP_DST/Contents/Resources/rightconvert" --matrix >"$MATRIX"
+/usr/bin/python3 "$APP_DST/Contents/Resources/bin/rightconvert" --matrix >"$MATRIX"
 # Shared secret the Finder extension attaches to its requests; see app/Host/main.swift.
 TOKEN="${MATRIX:h}/token"
 if [[ ! -s $TOKEN ]]; then
@@ -84,7 +84,7 @@ if [[ ! -s $TOKEN ]]; then
 fi
 
 mkdir -p "$LINK_DIR"
-ln -sf "$APP_DST/Contents/Resources/rightconvert" "$LINK_DIR/rightconvert"
+ln -sfn "$APP_DST/Contents/Resources/bin/rightconvert" "$LINK_DIR/rightconvert"
 print "Linked $LINK_DIR/rightconvert"
 if [[ :$PATH: != *:$LINK_DIR:* ]]; then
   print "Note: add $LINK_DIR to your PATH to use 'rightconvert' from the terminal."

@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Builds build/RightConvert.app: a background helper app that bundles rightconvert, plus the
+# Builds build/RightConvert.app: a background helper app that bundles the rightconvert Python package, plus the
 # Finder extension that adds the "Convert" submenu. Signs with an Apple Development
 # identity if one is available, otherwise ad-hoc. Override with SIGN_IDENTITY=<identity> or
 # SIGN_IDENTITY=- (ad-hoc).
@@ -32,8 +32,10 @@ xcrun swiftc -O -sdk "$SDK" -target "$TARGET" -application-extension -parse-as-l
 
 cp "$SRC/Host/Info.plist" "$APP/Contents/Info.plist"
 cp "$SRC/FinderSync/Info.plist" "$EXT/Contents/Info.plist"
-cp "$REPO/bin/rightconvert" "$APP/Contents/Resources/rightconvert"
-chmod +x "$APP/Contents/Resources/rightconvert"
+mkdir -p "$APP/Contents/Resources/bin" "$APP/Contents/Resources/rightconvert"
+cp "$REPO/bin/rightconvert" "$APP/Contents/Resources/bin/rightconvert"
+chmod +x "$APP/Contents/Resources/bin/rightconvert"
+cp "$REPO"/rightconvert/*.py "$APP/Contents/Resources/rightconvert/"
 
 identity=${SIGN_IDENTITY-$(security find-identity -v -p codesigning 2>/dev/null | awk '/Apple Development/ { print $2; exit }')}
 [[ $identity == - ]] && identity=""
