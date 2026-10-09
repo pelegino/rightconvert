@@ -3,7 +3,7 @@ import AppKit
 /// Background helper: receives rightconvert://convert?token=T&to=FORMAT&f=PATH&f=PATH from the Finder
 /// extension and runs the bundled rightconvert script, which the sandboxed extension can't do itself.
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    private let script = Bundle.main.url(forResource: "rightconvert", withExtension: nil)!
+    private let script = Bundle.main.url(forResource: "rightconvert", withExtension: nil, subdirectory: "bin")!
     private let supportDir = FileManager.default.homeDirectoryForCurrentUser
         .appendingPathComponent("Library/Application Support/rightconvert")
     private var receivedURL = false
@@ -66,7 +66,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func run(_ args: [String], stdout: Pipe? = nil, completion: @escaping () -> Void) {
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        // Apps launched from Finder get a minimal PATH; the system Python ships with the Command Line Tools.
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/python3")
         process.arguments = [script.path] + args
         if let stdout { process.standardOutput = stdout } else { process.standardOutput = FileHandle.nullDevice }
         running += 1
