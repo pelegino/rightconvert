@@ -2,6 +2,7 @@
 .SYNOPSIS
     Removes the Convert Explorer menu, the rightconvert command and its files. Tools installed with winget are kept.
 #>
+param([switch]$Pause)
 $ErrorActionPreference = 'Stop'
 $Dest = Join-Path $env:LOCALAPPDATA 'RightConvert'
 $bin = Join-Path $Dest 'bin'
@@ -24,7 +25,9 @@ Set-Location $env:TEMP
 Remove-Item $Dest -Recurse -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Removed RightConvert and its Explorer menu.'
+if (Test-Path $Dest) { Write-Host "Some files in $Dest were in use. Delete that folder after closing open windows." }
 Write-Host 'Tools installed with winget were kept. Remove them with:'
-foreach ($id in 'Gyan.FFmpeg', 'ImageMagick.ImageMagick', 'oschwartz10612.Poppler', 'JohnMacFarlane.Pandoc') {
+foreach ($id in 'Gyan.FFmpeg', 'ImageMagick.ImageMagick', 'oschwartz10612.Poppler', 'JohnMacFarlane.Pandoc', 'TheDocumentFoundation.LibreOffice') {
     Write-Host "  winget uninstall --id $id"
 }
+if ($Pause) { Read-Host 'Press Enter to close' | Out-Null }

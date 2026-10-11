@@ -59,13 +59,6 @@ if ! xcrun --find swiftc >/dev/null 2>&1; then
 fi
 "$REPO/app/build.sh"
 
-# Replaced by the Finder extension.
-if [[ -d $HOME/Library/Services/Convert.workflow ]]; then
-  rm -rf "$HOME/Library/Services/Convert.workflow"
-  /System/Library/CoreServices/pbs -flush >/dev/null 2>&1 || true
-  print "Removed the old Convert... Quick Action."
-fi
-
 pluginkit -r "$APP_DST/Contents/PlugIns/ConvertFinderSync.appex" 2>/dev/null || true
 mkdir -p "${APP_DST:h}"
 rm -rf "$APP_DST"

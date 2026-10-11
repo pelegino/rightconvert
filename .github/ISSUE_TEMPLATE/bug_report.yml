@@ -1,0 +1,43 @@
+name: Bug report
+description: A conversion fails, the menu misbehaves, or something else is broken.
+labels: [bug]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS
+        - Windows 11
+        - Windows 10
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: OS version and RightConvert version
+      description: Run `rightconvert --version` in a terminal.
+      placeholder: macOS 15.2, rightconvert 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you convert, from which format to which, and what went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: |
+        The end of the log, from `~/Library/Logs/rightconvert.log` on macOS or `%LOCALAPPDATA%\RightConvert\rightconvert.log` on Windows.
+        It contains file paths; remove anything you don't want to share.
+      render: text
+  - type: textarea
+    id: tools
+    attributes:
+      label: Available formats
+      description: The output of `rightconvert --list <your file>`, which shows what your installed tools support.
+      render: text
