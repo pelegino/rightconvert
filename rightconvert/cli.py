@@ -6,7 +6,7 @@ import os
 import shutil
 import sys
 
-from . import ui
+from . import __version__, ui
 from .documents import convert_document
 from .engines import INSTALL_HINT, WINDOWS, engine_for, missing_engines_for, targets_for
 from .formats import CATEGORY, all_extensions, base_format, category_of, ext_of, label_for, normalize_ext
@@ -20,6 +20,7 @@ Usage:
   rightconvert --list FILE          print the formats FILE can be converted to
   rightconvert --matrix             print the conversion table for all known extensions
   rightconvert --gui ...            show notifications and dialogs even with --to
+  rightconvert --version            print the version
 """ + ("""\
   rightconvert --register           add the Convert menu to Explorer (run again after installing tools)
   rightconvert --unregister         remove the Convert menu from Explorer
@@ -216,6 +217,9 @@ def main(argv: list[str] | None = None) -> int:
                 return windows.register() if a == "--register" else windows.unregister()
             elif a in ("-h", "--help"):
                 print(USAGE)
+                return 0
+            elif a in ("-V", "--version"):
+                print("rightconvert " + __version__)
                 return 0
             elif a == "--":
                 args += argv[i + 1:]

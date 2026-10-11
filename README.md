@@ -4,6 +4,13 @@
 
 <p align="center">Right-click any file on your Mac or PC, hover <b>Convert</b>, pick a format. Done.</p>
 
+<p align="center">
+  <a href="https://github.com/peleg1711-boop/rightconvert/releases/latest"><img src="https://img.shields.io/github/v/release/peleg1711-boop/rightconvert" alt="Latest release"></a>
+  <a href="https://github.com/peleg1711-boop/rightconvert/actions/workflows/test.yml"><img src="https://github.com/peleg1711-boop/rightconvert/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-lightgrey" alt="macOS and Windows">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/peleg1711-boop/rightconvert" alt="MIT license"></a>
+</p>
+
 <p align="center"><img src="docs/menu.png" width="420" alt="The Convert item in Finder's right-click menu"></p>
 
 RightConvert adds a **Convert** submenu to Finder and Windows Explorer that turns images, video, audio, PDFs, and documents into other formats. The converted file is saved next to the original, and the original is never touched or overwritten.
@@ -15,6 +22,8 @@ RightConvert adds a **Convert** submenu to Finder and Windows Explorer that turn
 ## Install on macOS
 
 Requirements: macOS 13 or later, [Homebrew](https://brew.sh), and Xcode or the Command Line Tools (`xcode-select --install`).
+
+Clone the repository (or download the source code from the [latest release](https://github.com/peleg1711-boop/rightconvert/releases/latest)) and run the installer:
 
 ```sh
 git clone https://github.com/peleg1711-boop/rightconvert.git
@@ -39,7 +48,7 @@ To remove it, run `./uninstall.sh`. The Homebrew packages stay installed.
 
 Requirements: Windows 10 or 11 with [winget](https://learn.microsoft.com/windows/package-manager/winget/) (preinstalled on current versions as "App Installer").
 
-[Download the repository](https://github.com/peleg1711-boop/rightconvert/archive/refs/heads/main.zip) and unzip it, or clone it, then double-click `windows\install.cmd`. From a terminal, the same thing is:
+Download the source code ZIP from the [latest release](https://github.com/peleg1711-boop/rightconvert/releases/latest), unzip it, and double-click `windows\install.cmd`. If SmartScreen warns about it, click **More info**, then **Run anyway**. From a terminal, the same thing is:
 
 ```powershell
 git clone https://github.com/peleg1711-boop/rightconvert.git
@@ -58,7 +67,7 @@ Options: `-WithLibreOffice`, `-NoLibreOffice`, and `-SkipDeps` (reinstall only R
 
 On Windows 11, **Convert** is in the classic menu: click **Show more options**, or Shift+right-click the file.
 
-To remove it, double-click `windows\uninstall.cmd`. The winget packages stay installed.
+Once installed, you can delete the downloaded folder. To remove RightConvert, double-click `uninstall.cmd` in `%LOCALAPPDATA%\RightConvert\windows` (or in the download). The winget packages stay installed.
 
 ## Usage
 
@@ -152,7 +161,7 @@ flowchart LR
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Run the tests with `cd tests && python3 -m unittest` before opening a pull request.
+Bug reports, format requests, and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and tests, and the [code of conduct](CODE_OF_CONDUCT.md). Report security problems privately as described in [SECURITY.md](SECURITY.md). Changes between versions are in the [changelog](CHANGELOG.md).
 
 ## License
 

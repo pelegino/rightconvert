@@ -130,6 +130,11 @@ class Behavior(WorkDir):
         finally:
             os.chmod(folder, stat.S_IRWXU)
 
+    def test_version(self):
+        result = cli("--version")
+        self.assertEqual(result.returncode, 0)
+        self.assertRegex(result.stdout, r"^rightconvert \d+\.\d+\.\d+$")
+
     def test_usage_errors_exit_2(self):
         self.assertEqual(cli("--to").returncode, 2)
         self.assertEqual(cli("--bogus", "x").returncode, 2)

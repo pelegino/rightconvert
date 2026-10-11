@@ -4,6 +4,9 @@
 import os
 import sys
 
+if sys.version_info < (3, 9):
+    sys.exit("rightconvert needs Python 3.9 or newer (this is %d.%d)." % sys.version_info[:2])
+
 # Bytecode caches would modify the signed macOS app bundle and the installed Windows folder.
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))

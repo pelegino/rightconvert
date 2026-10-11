@@ -1,0 +1,16 @@
+name: Feature or format request
+description: Suggest a new format, conversion, or improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like?
+      description: For a new format, name the source and target formats and what you'd use the conversion for.
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: Which tool could do it?
+      description: If you know a local, open-source tool that handles this conversion, mention it. RightConvert only uses tools that run on your own computer.
