@@ -5,10 +5,10 @@
 <p align="center">Right-click any file on your Mac or PC, hover <b>Convert</b>, pick a format. Done.</p>
 
 <p align="center">
-  <a href="https://github.com/peleg1711-boop/rightconvert/releases/latest"><img src="https://img.shields.io/github/v/release/peleg1711-boop/rightconvert" alt="Latest release"></a>
-  <a href="https://github.com/peleg1711-boop/rightconvert/actions/workflows/test.yml"><img src="https://github.com/peleg1711-boop/rightconvert/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/pelegino/rightconvert/releases/latest"><img src="https://img.shields.io/github/v/release/pelegino/rightconvert" alt="Latest release"></a>
+  <a href="https://github.com/pelegino/rightconvert/actions/workflows/test.yml"><img src="https://github.com/pelegino/rightconvert/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-lightgrey" alt="macOS and Windows">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/peleg1711-boop/rightconvert" alt="MIT license"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/pelegino/rightconvert" alt="MIT license"></a>
 </p>
 
 <p align="center"><img src="docs/menu.png" width="420" alt="The Convert item in Finder's right-click menu"></p>
@@ -23,10 +23,10 @@ RightConvert adds a **Convert** submenu to Finder and Windows Explorer that turn
 
 Requirements: macOS 13 or later, [Homebrew](https://brew.sh), and Xcode or the Command Line Tools (`xcode-select --install`).
 
-Clone the repository (or download the source code from the [latest release](https://github.com/peleg1711-boop/rightconvert/releases/latest)) and run the installer:
+Clone the repository (or download the source code from the [latest release](https://github.com/pelegino/rightconvert/releases/latest)) and run the installer:
 
 ```sh
-git clone https://github.com/peleg1711-boop/rightconvert.git
+git clone https://github.com/pelegino/rightconvert.git
 cd rightconvert
 ./install.sh
 ```
@@ -48,10 +48,10 @@ To remove it, run `./uninstall.sh`. The Homebrew packages stay installed.
 
 Requirements: Windows 10 or 11 with [winget](https://learn.microsoft.com/windows/package-manager/winget/) (preinstalled on current versions as "App Installer").
 
-Download the source code ZIP from the [latest release](https://github.com/peleg1711-boop/rightconvert/releases/latest), unzip it, and double-click `windows\install.cmd`. If SmartScreen warns about it, click **More info**, then **Run anyway**. From a terminal, the same thing is:
+Download the source code ZIP from the [latest release](https://github.com/pelegino/rightconvert/releases/latest), unzip it, and double-click `windows\install.cmd`. If SmartScreen warns about it, click **More info**, then **Run anyway**. From a terminal, the same thing is:
 
 ```powershell
-git clone https://github.com/peleg1711-boop/rightconvert.git
+git clone https://github.com/pelegino/rightconvert.git
 cd rightconvert
 powershell -ExecutionPolicy Bypass -File windows\install.ps1
 ```

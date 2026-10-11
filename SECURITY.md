@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Please report security problems privately through [GitHub's private vulnerability reporting](https://github.com/peleg1711-boop/rightconvert/security/advisories/new), not in a public issue. Include the platform, the steps to reproduce, and what an attacker could achieve. You'll get a reply within a week.
+Please report security problems privately through [GitHub's private vulnerability reporting](https://github.com/pelegino/rightconvert/security/advisories/new), not in a public issue. Include the platform, the steps to reproduce, and what an attacker could achieve. You'll get a reply within a week.
 
 Only the latest release is supported with fixes.
 
