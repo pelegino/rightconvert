@@ -2,3 +2,6 @@ build/
 .DS_Store
 __pycache__/
 *.pyc
+
+# Launch video project (HyperFrames source + ~18 MB of MP4 renders)
+video/

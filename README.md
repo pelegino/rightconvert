@@ -11,7 +11,9 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/pelegino/rightconvert" alt="MIT license"></a>
 </p>
 
-<p align="center"><img src="docs/menu.png" width="420" alt="The Convert item in Finder's right-click menu"></p>
+<p align="center"><a href="https://github.com/pelegino/rightconvert/releases/download/v1.0.0/rightconvert-launch-16x9.mp4"><img src="docs/demo.gif" width="720" alt="Right-clicking photo.heic, choosing Convert, then JPG, and photo.jpg appearing next to it"></a></p>
+
+<p align="center"><a href="https://github.com/pelegino/rightconvert/releases/download/v1.0.0/rightconvert-launch-16x9.mp4">Watch the 20-second video</a></p>
 
 RightConvert adds a **Convert** submenu to Finder and Windows Explorer that turns images, video, audio, PDFs, and documents into other formats. The converted file is saved next to the original, and the original is never touched or overwritten.
 
